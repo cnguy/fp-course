@@ -91,8 +91,7 @@ headOr _ (head :. _) = head
 product ::
   List Int
   -> Int
-product Nil = 1
-product (head :. rest) = head * product rest
+product = foldLeft (*) 1
 
 -- | Sum the elements of the list.
 --
@@ -106,8 +105,7 @@ product (head :. rest) = head * product rest
 sum ::
   List Int
   -> Int
-sum Nil = 0
-sum (head :. rest) = head + sum rest
+sum = foldLeft (+) 0
 
 -- | Return the length of the list.
 --
@@ -133,8 +131,7 @@ map ::
   (a -> b)
   -> List a
   -> List b
-map _ Nil = Nil
-map f (head :. rest) = (f head) :. (map f rest)
+map f = foldRight (\a b -> f a :. b) Nil
 
 -- | Return elements satisfying the given predicate.
 --
@@ -150,8 +147,7 @@ filter ::
   (a -> Bool)
   -> List a
   -> List a
-filter _ Nil = Nil
-filter f (head :. rest) = if (f head) then head :. (filter f rest) else (filter f rest)
+filter f = foldRight (\a -> if f a then (a :.) else id) Nil
 
 -- | Append two lists to a new list.
 --
