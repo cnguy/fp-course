@@ -169,8 +169,9 @@ filter f (head :. rest) = if (f head) then head :. (filter f rest) else (filter 
   List a
   -> List a
   -> List a
-(++) =
-  error "todo: Course.List#(++)"
+(++) Nil that = that
+(++) this Nil = this
+(++) (head :. rest) that = head :. ((++) rest that)
 
 infixr 5 ++
 
