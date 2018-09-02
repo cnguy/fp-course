@@ -165,9 +165,7 @@ filter f = foldRight (\a -> if f a then (a :.) else id) Nil
   List a
   -> List a
   -> List a
-(++) Nil that = that
-(++) this Nil = this
-(++) (head :. rest) that = head :. ((++) rest that)
+(++) = flip (foldRight (:.))
 
 infixr 5 ++
 
