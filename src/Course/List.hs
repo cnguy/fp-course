@@ -106,8 +106,8 @@ product (head :. rest) = head * product rest
 sum ::
   List Int
   -> Int
-sum =
-  error "todo: Course.List#sum"
+sum Nil = 0
+sum (head :. rest) = head + sum rest
 
 -- | Return the length of the list.
 --
