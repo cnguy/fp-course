@@ -118,8 +118,8 @@ sum (head :. rest) = head + sum rest
 length ::
   List a
   -> Int
-length =
-  error "todo: Course.List#length"
+length Nil = 0
+length (_ :. rest) = 1 + length rest
 
 -- | Map the given function on each element of the list.
 --
