@@ -202,8 +202,7 @@ flatMap ::
   (a -> List b)
   -> List a
   -> List b
-flatMap _ Nil = Nil
-flatMap (f) (list) = flatten (map f list)
+flatMap f = flatten . map f
 
 -- | Flatten a list of lists to a list (again).
 -- HOWEVER, this time use the /flatMap/ function that you just wrote.
